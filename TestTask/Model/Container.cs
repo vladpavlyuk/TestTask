@@ -7,18 +7,23 @@ using System.Threading.Tasks;
 
 namespace TestTask.Model
 {
-    public class Container : IAddingItem<Matrix>, IEnumerable
+    public class Container<T> : IAddingItem<Matrix<T>>, IEnumerable<Matrix<T>> where T : struct
     {
-        List<Matrix> matrices = new List<Matrix>();
+        List<Matrix<T>> matrices = new List<Matrix<T>>();
 
-        public void AddItem(Matrix obj)
+        public void AddItem(Matrix<T> obj)
         {
             matrices.Add(obj);
         }
 
-        public IEnumerator GetEnumerator()
+        public IEnumerator<Matrix<T>> GetEnumerator()
         {
-            return matrices.GetEnumerator();
+            return ((IEnumerable<Matrix<T>>)matrices).GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable<Matrix<T>>)matrices).GetEnumerator();
         }
     }
 }
