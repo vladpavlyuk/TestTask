@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace TestTask.Model
 {
-    public class Matrix<T> : DataProvider<Position<T>> where T : struct
+    class Containers<T> : DataProvider<Container<T>> where T : struct
     {
-        public override void AddItem(Position<T> item)
+        public override void AddItem(Container<T> item)
         {
             Add(item);
         }

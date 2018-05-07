@@ -43,9 +43,11 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Abstract\IAddingItem.cs" />
     <Compile Include="Model\Container.cs" />
+    <Compile Include="Model\Containers.cs" />
     <Compile Include="Model\Matrix.cs" />
     <Compile Include="Model\Point.cs" />
     <Compile Include="Model\Position.cs" />
+    <Compile Include="Model\DataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -8,23 +8,11 @@ using System.Threading.Tasks;
 
 namespace TestTask.Model
 {
-    public class Position<T> : IAddingItem<Point<T>>, IEnumerable<Point<T>> where T : struct
+    public class Position<T> : DataProvider<Point<T>> where T : struct
     {
-        private List<Point<T>> points = new List<Point<T>>();
-        
-        public void AddItem(Point<T> obj)
+        public override void AddItem(Point<T> item)
         {
-            points.Add(obj);
-        }
-
-        public IEnumerator<Point<T>> GetEnumerator()
-        {
-            return ((IEnumerable<Point<T>>)points).GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return ((IEnumerable<Point<T>>)points).GetEnumerator();
+            Add(item);
         }
     }
 }
