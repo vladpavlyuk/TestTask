@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace TestTask.Model
 {
-    public class Matrix<T> : DataProvider<Position<T>> where T : struct
+    public class Matrix<T> : PMCDataModel<Position<T>> where T : struct
     {
-        public override void AddItem(Position<T> item)
-        {
-            Add(item);
-        }
+        
     }
 }

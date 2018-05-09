@@ -8,11 +8,8 @@ using System.Threading.Tasks;
 
 namespace TestTask.Model
 {
-    public class Position<T> : DataProvider<Point<T>> where T : struct
+    public class Position<T> : PMCDataModel<Point<T>> where T : struct
     {
-        public override void AddItem(Point<T> item)
-        {
-            Add(item);
-        }
+        
     }
 }

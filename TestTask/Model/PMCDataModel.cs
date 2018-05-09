@@ -7,25 +7,33 @@ using System.Threading.Tasks;
 
 namespace TestTask.Model
 {
-    public abstract class DataProvider<T> : ICollection<T>
+    public abstract class PMCDataModel<T> : ICollection<T>
     {
         private List<T> list;
-
-        public DataProvider()
-        {
-            list = new List<T>();
-        }
-
+        
         public int Count => ((ICollection<T>)list).Count;
 
         public bool IsReadOnly => ((ICollection<T>)list).IsReadOnly;
+
+        public T this[int index]
+        {
+            get { return list[index]; }
+        }
+        
+        public PMCDataModel()
+        {
+            list = new List<T>();
+        }
 
         public void Add(T item)
         {
             ((ICollection<T>)list).Add(item);
         }
 
-        public abstract void AddItem(T item);
+        public void AddRange(IEnumerable<T> col)
+        {
+            list.AddRange(col);
+        }
 
         public void Clear()
         {

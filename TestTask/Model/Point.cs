@@ -17,12 +17,12 @@ namespace TestTask.Model
         public T ZPoint { get { return zPoint; } }
         private readonly T zPoint;
 
-        public Point(T x):this(x, default(T), default(T))
+        public Point(T x) : this(x, default(T), default(T))
         {
 
         }
 
-        public Point(T x, T y):this(x, y, default(T))
+        public Point(T x, T y) : this(x, y, default(T))
         {
 
         }

@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace TestTask.Model
 {
-    class Containers<T> : DataProvider<Container<T>> where T : struct
+    public class MainContainer<T> : PMCDataModel<Container<T>> where T : struct
     {
-        public override void AddItem(Container<T> item)
-        {
-            Add(item);
-        }
+       
     }
 }
