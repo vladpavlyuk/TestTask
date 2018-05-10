@@ -14,13 +14,8 @@ namespace Example
         static void Main(string[] args)
         {
             MainContainer<int> mainContainer = new MainContainer<int>();
+            mainContainer.AddRange(MainContainer<int>.ContainerFactory(3));
 
-            
-            Container<int>[] container = new Container<int>[3];
-            for (int i = 0; i < container.Length; i++)
-            {
-                container[i] = new Container<int>();
-            }
 
             Matrix<int>[] matrices = new Matrix<int>[2];
             for (int i = 0; i < matrices.Length; i++)
@@ -57,10 +52,9 @@ namespace Example
 
             for (int i = 0; i < 3; i++)
             {
-                container[i].AddRange(matrices);
+                mainContainer[i].AddRange(matrices);
             }
 
-            mainContainer.AddRange(container);
 
             int count = 0;
             foreach (var cont in mainContainer)
@@ -71,7 +65,7 @@ namespace Example
                     {
                         foreach (var point in pos)
                         {
-                            
+
                             count++;
                         }
                     }

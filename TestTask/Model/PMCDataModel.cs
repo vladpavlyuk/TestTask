@@ -7,62 +7,74 @@ using System.Threading.Tasks;
 
 namespace TestTask.Model
 {
-    public abstract class PMCDataModel<T> : ICollection<T>
+    public abstract class PMCDataModel<T> : IList<T>
     {
         private List<T> list;
-        
-        public int Count => ((ICollection<T>)list).Count;
 
-        public bool IsReadOnly => ((ICollection<T>)list).IsReadOnly;
-
-        public T this[int index]
-        {
-            get { return list[index]; }
-        }
-        
         public PMCDataModel()
         {
             list = new List<T>();
         }
 
+        public T this[int index] { get => ((IList<T>)list)[index]; set => ((IList<T>)list)[index] = value; }
+
+        public int Count => ((IList<T>)list).Count;
+
+        public bool IsReadOnly => ((IList<T>)list).IsReadOnly;
+
         public void Add(T item)
         {
-            ((ICollection<T>)list).Add(item);
+            ((IList<T>)list).Add(item);
         }
 
-        public void AddRange(IEnumerable<T> col)
+        public void AddRange(IEnumerable<T> coll)
         {
-            list.AddRange(col);
+            list.AddRange(coll);
         }
 
         public void Clear()
         {
-            ((ICollection<T>)list).Clear();
+            ((IList<T>)list).Clear();
         }
 
         public bool Contains(T item)
         {
-            return ((ICollection<T>)list).Contains(item);
+            return ((IList<T>)list).Contains(item);
         }
 
         public void CopyTo(T[] array, int arrayIndex)
         {
-            ((ICollection<T>)list).CopyTo(array, arrayIndex);
+            ((IList<T>)list).CopyTo(array, arrayIndex);
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-            return ((ICollection<T>)list).GetEnumerator();
+            return ((IList<T>)list).GetEnumerator();
+        }
+
+        public int IndexOf(T item)
+        {
+            return ((IList<T>)list).IndexOf(item);
+        }
+
+        public void Insert(int index, T item)
+        {
+            ((IList<T>)list).Insert(index, item);
         }
 
         public bool Remove(T item)
         {
-            return ((ICollection<T>)list).Remove(item);
+            return ((IList<T>)list).Remove(item);
+        }
+
+        public void RemoveAt(int index)
+        {
+            ((IList<T>)list).RemoveAt(index);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return ((ICollection<T>)list).GetEnumerator();
+            return ((IList<T>)list).GetEnumerator();
         }
     }
 }
