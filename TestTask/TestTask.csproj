@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomException\InvalidMatrixCountException.cs" />
     <Compile Include="Model\Container.cs" />
     <Compile Include="Model\MainContainer.cs" />
     <Compile Include="Model\Matrix.cs" />

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestTask.CustomException;
 
 namespace TestTask.Model
 {
@@ -22,8 +23,8 @@ namespace TestTask.Model
             }
             else
             {
-                Console.WriteLine("All matrices in all containers should have the same number of possition. Try again...");
                 check = false;
+                throw new InvalidMatrixCountException("All matrices in all containers should have the same number of possition. Try again...");                
             }
         }
 
@@ -41,7 +42,7 @@ namespace TestTask.Model
                 }
                 else
                 {
-                    Console.WriteLine("All matrices in all containers should have the same number of possition. Try again...");
+                    throw new InvalidMatrixCountException("All matrices in all containers should have the same number of possition. Try again...");
                     check = false;
                 }
             }

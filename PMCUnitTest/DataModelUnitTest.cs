@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TestTask.CustomException;
 using TestTask.Model;
 
 namespace PMCUnitTest
@@ -8,37 +9,51 @@ namespace PMCUnitTest
     public class DataModelUnitTest
     {
         [TestMethod]
-        public void CanCheckNumbersOfPossitions()
+        public void CanAddMatricesCorrectly()
         {
             //arrange
             Container<int> container1 = new Container<int>();
             Container<int> container2 = new Container<int>();
 
-            Matrix<int> matrix1 = new Matrix<int>();
-            for (int i = 0; i < 50; i++)
+            Matrix<int>[] matrices = new Matrix<int>[2];
+            for (int i = 0; i < matrices.Length; i++)
             {
-                matrix1.Add(new Position<int>());
+                matrices[i] = new Matrix<int>();
             }
 
-            Matrix<int> matrix2 = new Matrix<int>();
-            for (int i = 0; i < 150; i++)
+            for (int i = 0; i < 10; i++)
             {
-                matrix1.Add(new Position<int>());
+                matrices[0].Add(new Position<int>());
+            }
+            for (int i = 0; i < 10; i++)
+            {
+                matrices[1].Add(new Position<int>());
             }
 
             //act
-            container1.Add(matrix1);
-            container1.Add(matrix1);
-
-            container2.Add(matrix2);
-            container2.Add(matrix2);
+            container1.AddRange(matrices);
+            container2.AddRange(matrices);
 
             //assert
-            Assert.IsFalse(container2.check);
+            Assert.IsTrue(container1.check);
+            Assert.IsTrue(container2.check);
         }
-
         [TestMethod]
-        public void CanAddRangeOfMatricesCorrectly()
+        public void CanCreateContainers()
+        {
+            //arrange
+            MainContainer<int> container = new MainContainer<int>();
+
+            //act
+            container.AddRange(MainContainer<int>.ContainerFactory(3));
+
+            //assert
+            Assert.AreEqual(3, container.Count);
+            Assert.IsInstanceOfType(container[0], typeof(Container<int>));
+        }
+        
+        [TestMethod]
+        public void CanThrowException()
         {
             //arrange
             Container<int> container1 = new Container<int>();
@@ -59,26 +74,8 @@ namespace PMCUnitTest
                 matrices[1].Add(new Position<int>());
             }
 
-            //act
-            container1.AddRange(matrices);
-            container2.AddRange(matrices);
-
             //assert
-            Assert.IsFalse(container1.check);
-            Assert.IsFalse(container2.check);
-        }
-        [TestMethod]
-        public void CanCreateContainers()
-        {
-            //arrange
-            MainContainer<int> container = new MainContainer<int>();
-
-            //act
-            container.AddRange(MainContainer<int>.ContainerFactory(3));
-
-            //assert
-            Assert.AreEqual(3, container.Count);
-            Assert.IsInstanceOfType(container[0], typeof(Container<int>));
+            Assert.ThrowsException<InvalidMatrixCountException>(() => { container1.AddRange(matrices); });
         }
     }
 }
